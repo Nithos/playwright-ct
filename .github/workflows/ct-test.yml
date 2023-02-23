@@ -8,6 +8,7 @@ name: Client E2E Tests
 on:
   pull_request:
     branches: ['main']
+  workflow_dispatch:
 
 jobs:
   ct-tests-docker:
@@ -29,7 +30,7 @@ jobs:
         run: yarn install --immutable
 
       - name: Run Playwright tests
-        run: yarn workspace hmi-client test:ct
+        run: yarn test-ct
 
       - name: Upload test artifacts on failure
         uses: actions/upload-artifact@v3
@@ -79,7 +80,7 @@ jobs:
         run: npx playwright install-deps
 
       - name: Run Playwright tests
-        run: yarn workspace hmi-client test:ct
+        run: yarn test-ct
 
       - name: Upload test artifacts on failure
         uses: actions/upload-artifact@v3
